@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Paleta fiel al logo: blanco + fucsia del degradado WOUND FEST */
+  --color-primary:          #E0187A;   /* fucsia del logo — color dominante del diseño */
+  --color-primary-hover:    #B4125F;   /* fucsia más oscuro para hover */
+  --color-secondary:        #A6216B;   /* fucsia-violeta medio */
+  --color-accent:           #E0187A;   /* mismo fucsia para CTAs */
+  --color-accent-hover:     #B4125F;
+  --color-gold:             #C4920C;   /* dorado "El Reto" */
+  --color-background:       #FFFFFF;   /* blanco puro — igual al banner */
+  --color-surface:          #FDF1F6;   /* fucsia muy claro — sections alternas */
+  --color-foreground:       #E0187A;   /* fucsia para títulos */
+  --color-body-text:        #C21568;   /* fucsia para párrafos */
+  --color-muted:            #FBEAF1;   /* fondo de cards */
+  --color-muted-foreground: #93536D;   /* texto secundario fucsia-grisáceo */
+  --color-border:           #F0C9DC;   /* borde fucsia muy claro */
+  --color-destructive:      #DC2626;
+  --color-ring:             #E0187A;
+
+  /* Colores de las ondas decorativas — solo para el hero */
+  --wave-teal:    #00c4c4;
+  --wave-purple:  #7b2fd4;
+  --wave-pink:    #e0187a;
+  --wave-orange:  #f97316;
+
+  --font-heading: 'Bebas Neue', sans-serif;
+  --font-body: 'Source Sans 3', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #FFFFFF;
+  background-image: url('/images/fondo.jpeg');
+  background-repeat: repeat;
+  background-size: 420px auto;
+  background-attachment: fixed;
+  color: var(--color-body-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
