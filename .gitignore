@@ -17,6 +17,9 @@ dist-ssr
 .env.*
 !.env.example
 
+# Archivos temporales subidos manualmente (p.ej. Excel de cronograma)
+temp-cronograma/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
