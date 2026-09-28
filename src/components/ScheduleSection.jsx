@@ -190,7 +190,7 @@ function TalleresList({ block }) {
             <p translate="no" className="mt-1 text-sm sm:text-base" style={{ color: 'var(--color-muted-foreground)' }}>
               {item.shared}
             </p>
-          ) : (
+          ) : item.talks && (
             <div className="mt-1 space-y-1.5">
               {item.talks.map((title, i) => (
                 <p key={i} className="text-sm sm:text-base" style={{ color: 'var(--color-muted-foreground)' }}>

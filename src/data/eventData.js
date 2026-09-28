@@ -56,7 +56,7 @@ export const SCHEDULE = [
               'Efectos antimicrobianos del DACC en Heridas Complejas',
             ],
           },
-          { time: '10:00 - 10:30', label: 'Refrigerio', shared: 'Refrigerio' },
+          { time: '10:00 - 10:30', label: 'Refrigerio y Muestras Comerciales' },
           {
             time: '10:30 - 11:30',
             label: 'Taller 3',
