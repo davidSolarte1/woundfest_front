@@ -103,6 +103,7 @@ function BlockSection({ block }) {
   return (
     <div>
       <p
+        translate="no"
         className="mb-3 text-base font-bold uppercase tracking-widest sm:text-xl"
         style={{ color: 'var(--color-primary)' }}
       >
@@ -179,13 +180,14 @@ function TalleresList({ block }) {
       {block.items.map((item) => (
         <ScheduleRow key={`${item.time}-${item.label}`} time={item.time} highlight={item.highlight}>
           <p
+            translate="no"
             className="text-base font-semibold sm:text-xl"
             style={{ color: item.highlight ? GOLD_TEXT : 'var(--color-body-text)' }}
           >
             {item.label}
           </p>
           {item.shared ? (
-            <p className="mt-1 text-sm sm:text-base" style={{ color: 'var(--color-muted-foreground)' }}>
+            <p translate="no" className="mt-1 text-sm sm:text-base" style={{ color: 'var(--color-muted-foreground)' }}>
               {item.shared}
             </p>
           ) : (
