@@ -7,4 +7,6 @@ const api = axios.create({
 
 export const createRegistration = (data) => api.post('/registrations/', data)
 
+export const getRegistrationStatus = () => api.get('/registrations/status/')
+
 export const listRegistrations = () => api.get('/registrations/')

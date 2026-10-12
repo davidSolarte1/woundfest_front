@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { createRegistration } from '../api/registrations'
+import { useEffect, useState } from 'react'
+import { createRegistration, getRegistrationStatus } from '../api/registrations'
 
 const OCUPACION_OPTIONS = [
   { value: '', label: 'Selecciona tu ocupación' },
@@ -41,6 +41,14 @@ export default function RegistrationForm() {
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | loading | success | error
   const [serverError, setServerError] = useState('')
+  const [isOpen, setIsOpen] = useState(true)
+
+  useEffect(() => {
+    // Si la consulta falla se deja el formulario visible; el backend igual rechaza si está cerrado.
+    getRegistrationStatus()
+      .then(({ data }) => setIsOpen(data.open))
+      .catch(() => {})
+  }, [])
 
   const validate = () => {
     const next = {}
@@ -83,6 +91,34 @@ export default function RegistrationForm() {
       setStatus('error')
       setServerError(getServerErrorMessage(err))
     }
+  }
+
+  if (!isOpen) {
+    return (
+      <div
+        role="status"
+        className="rounded-xl border p-8 text-center"
+        style={{ borderColor: 'var(--color-border)', background: 'var(--color-muted)' }}
+      >
+        <svg
+          className="mx-auto mb-4 h-12 w-12"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          style={{ color: 'var(--color-primary)' }}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+        </svg>
+        <h3 className="mb-2 text-2xl" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-primary)' }}>
+          INSCRIPCIONES CERRADAS
+        </h3>
+        <p style={{ color: 'var(--color-muted-foreground)' }}>
+          El registro para Wound Fest — El Reto ha finalizado. ¡Gracias por tu interés!
+        </p>
+      </div>
+    )
   }
 
   if (status === 'success') {

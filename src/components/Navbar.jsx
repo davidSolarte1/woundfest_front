@@ -1,7 +1,18 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { EVENT_NAME, EVENT_SUBTITLE } from '../data/eventData'
+import { getRegistrationStatus } from '../api/registrations'
 
 export default function Navbar() {
+  // Oculto hasta confirmar que el registro está abierto, para que no aparezca y desaparezca.
+  const [registrationOpen, setRegistrationOpen] = useState(false)
+
+  useEffect(() => {
+    getRegistrationStatus()
+      .then(({ data }) => setRegistrationOpen(data.open))
+      .catch(() => {})
+  }, [])
+
   return (
     <header
       className="sticky top-0 z-50 border-b"
@@ -20,13 +31,15 @@ export default function Navbar() {
           </div>
         </Link>
 
-        <Link
-          to="/registro"
-          className="rounded-lg px-5 py-2 text-sm font-bold tracking-wider text-white transition-colors duration-200 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-ring)] focus:ring-offset-2"
-          style={{ background: 'var(--color-primary)', fontFamily: 'var(--font-heading)', letterSpacing: '0.1em' }}
-        >
-          REGISTRARME
-        </Link>
+        {registrationOpen && (
+          <Link
+            to="/registro"
+            className="rounded-lg px-5 py-2 text-sm font-bold tracking-wider text-white transition-colors duration-200 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--color-ring)] focus:ring-offset-2"
+            style={{ background: 'var(--color-primary)', fontFamily: 'var(--font-heading)', letterSpacing: '0.1em' }}
+          >
+            REGISTRARME
+          </Link>
+        )}
       </nav>
     </header>
   )
